@@ -1,0 +1,14 @@
+spin_version = "1"
+authors = ["Fermyon Engineering <engineering@fermyon.com>"]
+description = "A Favicon server written in (Tiny)Go"
+name = "spin-favicon"
+trigger = { type = "http", base = "/" }
+version = "1.0.0"
+
+[[component]]
+id = "tinygo-favicon"
+source = "favicon.wasm"
+files = ["favicon.ico"]
+[component.trigger]
+route = "/favicon.ico"
+executor = { type = "wagi" }
