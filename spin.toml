@@ -6,7 +6,7 @@ trigger = { type = "http", base = "/" }
 version = "1.0.0"
 
 [[component]]
-id = "tinygo-favicon"
+id = "favicon"
 source = "favicon.wasm"
 files = ["favicon.ico"]
 [component.trigger]
