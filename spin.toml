@@ -1,14 +1,19 @@
-spin_version = "1"
-authors = ["Fermyon Engineering <engineering@fermyon.com>"]
-description = "A Favicon server written in (Tiny)Go"
-name = "spin-favicon"
-trigger = { type = "http", base = "/" }
-version = "1.0.0"
+spin_manifest_version = 2
 
-[[component]]
-id = "favicon"
+[application]
+name = "favicon"
+version = "0.2.0"
+authors = ["Matt Butcher <matt.butcher@fermyon.com>"]
+description = "Favicon server"
+
+[[trigger.http]]
+route = "/..."
+component = "favicon"
+
+[component.favicon]
 source = "favicon.wasm"
-files = ["favicon.ico"]
-[component.trigger]
-route = "/favicon.ico"
-executor = { type = "wagi" }
+# files = ["favicon.ico"]
+files = [{ source = "static/", destination = "/" }]
+[component.favicon.build]
+command = "tinygo build -target=wasi -gc=leaking -no-debug -o favicon.wasm main.go"
+watch = ["**/*.go", "go.mod"]
